@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MappingUtil {
 
-    public static void main(String[] args) {
+    static void main() {
         List<User> users = List.of(
                 new User("Alice", "pc@gmail.com", "Engineering"),
                 new User("Bob", "gp@gmail.com", "Marketing"),
