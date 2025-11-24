@@ -1,5 +1,6 @@
 package com.java.problems.vehicleregprocessing;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class VehicleRegProcessing {
@@ -14,23 +15,21 @@ public class VehicleRegProcessing {
 
         List<Vehicle> vehicles = List.of(car, truck, bike);
         double sum = vehicles.stream()
-                .mapToDouble(v -> calculateTax(v))
+                .mapToDouble(VehicleRegProcessing::calculateTax)
                 .sum();
         System.out.println("Total Tax for all vehicles: " + sum);
 
 // Find the most expensive vehicle
         Vehicle mostExpensiveVehicle = vehicles.stream()
-                .max((v1, v2) ->
-                    Double.compare(priceOf(v1), priceOf(v2)))
+                .max(Comparator.comparingDouble(VehicleRegProcessing::priceOf))
                 .orElseThrow(() -> new IllegalStateException("No vehicles available"));
 
         Vehicle leastExpensiveVehicle = vehicles.stream()
-                .min((v1, v2) ->
-                        Double.compare(priceOf(v1), priceOf(v2)))
+                .min(Comparator.comparingDouble(VehicleRegProcessing::priceOf))
                 .orElseThrow(() -> new IllegalStateException("No vehicles available"));
 
 //        want to find most expensive vehicle using traditopnal approach
-        Vehicle mostExpensive = vehicles.get(0);
+        Vehicle mostExpensive = vehicles.getFirst();
         for (Vehicle v : vehicles) {
             if (priceOf(v) > priceOf(mostExpensive)) {
                 mostExpensive = v;
@@ -38,9 +37,10 @@ public class VehicleRegProcessing {
         }
         System.out.println("Most expensive vehicle (traditional): " + priceOf(mostExpensive));
         System.out.println("Most expensive vehicle (stream): " + priceOf(mostExpensiveVehicle));
+        System.out.println("Least expensive vehicle (stream): " + priceOf(leastExpensiveVehicle));
 
         List<Integer> values = List.of(10, 20, 30, 40, 50);
-        int maxValue = values.get(0);
+        int maxValue = values.getFirst();
         for (int val : values) {
             if (val > maxValue) {
                 maxValue = val;
@@ -57,12 +57,18 @@ public class VehicleRegProcessing {
     }
 
     public static double calculateTax(Vehicle vehicle){
-        double tax = 0.0;
         return switch (vehicle){
-            case Car car -> tax = car.engineCapacity() * 0.05;
-            case Truck truck-> tax = truck.engineCapacity() * 0.1;
-            case Bike bike -> tax = bike.engineCapacity() * 0.03;
-            default -> throw new IllegalArgumentException("Unknown vehicle type: " + vehicle);
+            case Car car -> {
+                double tax = 0.0;
+                if (car.engineCapacity() <= 1500) {
+                    tax = car.engineCapacity() * 0.03;
+                } else if (car.engineCapacity() <= 2500) {
+                    tax = car.engineCapacity() * 0.05;
+                }
+                yield tax;
+            }
+            case Truck truck-> truck.engineCapacity() * 0.1;
+            case Bike bike -> bike.engineCapacity() * 0.03;
         };
     }
 }
