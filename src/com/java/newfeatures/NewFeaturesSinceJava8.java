@@ -45,9 +45,11 @@ public class NewFeaturesSinceJava8 {
         // Switch Expressions
         int day = 3;
         String dayName = switch (day) {
-            case 1 -> "Monday";
-            case 2 -> "Tuesday";
-            case 3 -> "Wednesday";
+            case 1,2 -> "Monday";
+            case 3 -> {
+                System.out.println("It's mid-week!");
+                yield "Wednesday";
+            }
             case 4 -> "Thursday";
             case 5 -> "Friday";
             case 6 -> "Saturday";
