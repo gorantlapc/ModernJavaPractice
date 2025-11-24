@@ -1,20 +1,7 @@
 package com.java.problems.bankaccsimulation;
 
-record TxResult(String account, int taskId, String operation, double amount, double balance) {
-    @Override
-    public String toString() {
-        return "TxResult{" +
-                "account='" + account + '\'' +
-                ", taskId='" + taskId + '\'' +
-                ", operation='" + operation + '\'' +
-                ", amount=" + amount +
-                ", balance=" + balance +
-                '}';
-    }
-}
-
 public class BankAccount {
-    private volatile String accountNumber;
+    private final String accountNumber;
     private double balance;
 
     public BankAccount(String accountNumber, double initialBalance) {
