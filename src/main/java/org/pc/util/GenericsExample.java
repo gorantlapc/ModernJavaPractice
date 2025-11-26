@@ -84,10 +84,10 @@ public class GenericsExample {
     private <T> void printList(List<T> list) {
         // use lambda forEach to process items and avoid duplicate printing
         list.forEach(item -> {
-            if (item instanceof Employee employee) {
-                System.out.println("Employee Name: " + employee.getName() + ", Department: " + employee.getDepartment());
-            } else {
-                System.out.println(item);
+            switch(item) {
+                case Employee employee -> System.out.println(employee.getName() + ", " + employee.getDepartment());
+                case Student student -> System.out.println(student.getName() + student.getGrade());
+                default -> System.out.println(item);
             }
         });
     }
