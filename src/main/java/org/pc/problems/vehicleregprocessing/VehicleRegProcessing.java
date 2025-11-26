@@ -16,10 +16,10 @@ public class VehicleRegProcessing {
         System.out.println("Tax for Bike: " + processor.calculateTax(bike));
 
         List<Vehicle> vehicles = List.of(car, truck, bike);
-        double sum = vehicles.stream()
+        double average = vehicles.stream()
                 .mapToDouble(processor::calculateTax) // method reference to calculateTax instance method
-                .sum();
-        System.out.println("Total Tax for all vehicles: " + sum);
+                .average().getAsDouble();
+        System.out.println("Average tax of all vehicles: " + average);
 
 // Find the most expensive vehicle
         Vehicle mostExpensiveVehicle = vehicles.stream()
