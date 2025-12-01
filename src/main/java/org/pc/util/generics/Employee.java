@@ -1,6 +1,6 @@
-package org.pc.util;
+package org.pc.util.generics;
 
-public final class Employee extends Person{
+public sealed class Employee extends Person permits FullTimeEmployee, PartTimeEmployee {
     private final String department;
     private final double salary;
 

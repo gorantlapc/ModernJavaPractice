@@ -1,4 +1,4 @@
-package org.pc.util;
+package org.pc.util.generics;
 
     public final class Student extends Person {
         String college;

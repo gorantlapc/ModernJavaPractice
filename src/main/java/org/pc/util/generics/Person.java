@@ -1,4 +1,4 @@
-package org.pc.util;
+package org.pc.util.generics;
 
 public sealed class Person permits Employee, Student {
     private final String name;
