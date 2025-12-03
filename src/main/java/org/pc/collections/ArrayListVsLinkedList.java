@@ -29,12 +29,12 @@ public class ArrayListVsLinkedList {
 
         // Accessing 100000 elements
         startTime = System.nanoTime();
-        arrayList.forEach(IO::println);
+        arrayList.forEach(System.out::println);
         endTime = System.nanoTime();
         System.out.println("ArrayList access time: " + (endTime - startTime)/1_000_000 + " ms");
 
         startTime = System.nanoTime();
-        linkedList.forEach(IO::println);
+        linkedList.forEach(System.out::println);
         endTime = System.nanoTime();
         System.out.println("LinkedList access time: " + (endTime - startTime)/1_000_000 + " ms");
     }

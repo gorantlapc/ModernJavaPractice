@@ -53,12 +53,12 @@ public class StreamsEx {
             employees.stream()
                     .mapToDouble(Employee::salary)
                     .average() //max()/average()/sum()
-                    .ifPresent(avg -> IO.println("Average Salary: " + avg));
+                    .ifPresent(avg -> System.out.println("Average Salary: " + avg));
 
             Map<String,List<Employee>> employeesGroupByDept = employees.stream().collect(Collectors.groupingBy(Employee::department));
             employeesGroupByDept.forEach((dept, empList) -> {
-                IO.println("Department: " + dept);
-                empList.forEach(emp -> IO.println(" - " + emp.name()));
+                System.out.println("Department: " + dept);
+                empList.forEach(emp -> System.out.println(" - " + emp.name()));
             });
 
         } catch (Exception e) {
