@@ -1,0 +1,44 @@
+{
+  "classA": [
+    {
+      "id": 1,
+      "name": "Alice Johnson"
+    },
+    {
+      "id": 2,
+      "name": "Brian Carter"
+    },
+    {
+      "id": 3,
+      "name": "Catherine Smith"
+    }
+  ],
+  "classB": [
+    {
+      "id": 4,
+      "name": "Daniel Brown"
+    },
+    {
+      "id": 5,
+      "name": "Emma Wilson"
+    },
+    {
+      "id": 6,
+      "name": "Frank White"
+    }
+  ],
+  "classC": [
+    {
+      "id": 7,
+      "name": "Grace Lee"
+    },
+    {
+      "id": 8,
+      "name": "Henry Adams"
+    },
+    {
+      "id": 9,
+      "name": "Isabella Green"
+    }
+  ]
+}
