@@ -1,20 +1,19 @@
 package org.pc.concurrency;
 
+import org.pc.util.dtos.Order;
+import org.pc.util.dtos.Product;
+import org.pc.util.dtos.User;
 import org.pc.util.parser.JSONParser;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-record User(int id, String name) {}
-record Order(int id, String item) {}
-record Product(int id, String name) {}
-
 public class ParallelProcessing {
     private static JSONParser parser = new JSONParser();
-    static void main() {
+    public static void main(String[] args) {
 
-        //sequentialProcess();
+       // sequentialProcess();
 
         long startTime = System.currentTimeMillis();
 
