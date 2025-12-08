@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 public class StreamsEx {
     //    initialize the arraylist with fruit names
-    static void main() {
+    public static void main(String[] args) {
         try {
-            java.util.List<String> fruits = java.util.Arrays.asList("Apple", "Banana", "Orange", "Mango", "Pineapple", "Grapes");
+            var fruits = java.util.Arrays.asList("Apple", "Banana", "Orange", "Mango", "Pineapple", "Grapes");
 
             // Use Streams to filter fruits starting with 'A' and convert to uppercase
             fruits.stream()
@@ -28,7 +28,7 @@ public class StreamsEx {
     public static void filterEmployees() {
         try {
             // Sample list of employees
-            java.util.List<Employee> employees = java.util.Arrays.asList(
+            List<Employee> employees = java.util.Arrays.asList(
                     new Employee("Alice", "HR", 30, 50000),
                     new Employee("Bob", "IT", 34, 60000),
                     new Employee("Charlie", "Finance", 35, 55000),
@@ -55,7 +55,7 @@ public class StreamsEx {
                     .average() //max()/average()/sum()
                     .ifPresent(avg -> System.out.println("Average Salary: " + avg));
 
-            Map<String,List<Employee>> employeesGroupByDept = employees.stream().collect(Collectors.groupingBy(Employee::department));
+            var employeesGroupByDept = employees.stream().collect(Collectors.groupingBy(Employee::department));
             employeesGroupByDept.forEach((dept, empList) -> {
                 System.out.println("Department: " + dept);
                 empList.forEach(emp -> System.out.println(" - " + emp.name()));

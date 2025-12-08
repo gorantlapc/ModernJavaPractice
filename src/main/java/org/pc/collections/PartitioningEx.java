@@ -1,7 +1,8 @@
 package org.pc.collections;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class Student {
     String name;
@@ -14,7 +15,7 @@ class Student {
 }
 
 public class PartitioningEx {
-    static void main() {
+    public static void main(String[] args) {
         List<Student> students = Arrays.asList(
                 new Student("John", 85),
                 new Student("Emma", 35),
@@ -24,8 +25,7 @@ public class PartitioningEx {
         );
 
         // Partition students into pass/fail
-        Map<Boolean, List<Student>> partitioned =
-                students.stream()
+        var partitioned = students.stream()
                         .collect(Collectors.partitioningBy(s -> s.marks >= 40));
 
         System.out.println("Passed Students:");

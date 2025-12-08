@@ -1,6 +1,8 @@
 package org.pc.collections;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SetExample {
     static void main() {
@@ -15,7 +17,7 @@ public class SetExample {
         System.out.println("Set after removing 'Orange': " + set);
 
 //      If you want to maintain insertion order, use LinkedHashSet
-        Set<String> linkedSet = new java.util.LinkedHashSet<>();
+        var linkedSet = new LinkedHashSet<String>();
         linkedSet.add("Grapes");
         linkedSet.add("Banana");
         linkedSet.add("Apple");
@@ -23,7 +25,7 @@ public class SetExample {
         System.out.println("LinkedHashSet contents (insertion order): " + linkedSet);
 
 //       If you want a sorted set, use TreeSet
-        Set<String> treeSet = new java.util.TreeSet<>();
+        var treeSet = new TreeSet<String>();
         treeSet.add("Grapes");
         treeSet.add("Banana");
         treeSet.add("Apple");

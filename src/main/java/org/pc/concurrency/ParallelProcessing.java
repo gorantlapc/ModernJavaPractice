@@ -16,22 +16,21 @@ public class ParallelProcessing {
        // sequentialProcess();
 
         long startTime = System.currentTimeMillis();
-
-        CompletableFuture<List<User>> userFuture = CompletableFuture.supplyAsync(() -> {
+        var userFuture = CompletableFuture.supplyAsync(() -> {
             try {
                 return fetchUsers();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-        CompletableFuture<List<Order>> orderFuture = CompletableFuture.supplyAsync(() -> {
+        var orderFuture = CompletableFuture.supplyAsync(() -> {
             try {
                 return fetchOrders();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-        CompletableFuture<List<Product>> productFuture = CompletableFuture.supplyAsync(() -> {
+        var productFuture = CompletableFuture.supplyAsync(() -> {
             try {
                 return fetchProducts();
             } catch (IOException e) {
@@ -72,18 +71,14 @@ public class ParallelProcessing {
     }
 
     private static List<Product> fetchProducts() throws IOException {
-        List<Product> products = parser.readJson("products.json", Product.class);
-        return products;
-
+        return parser.readJson("products.json", Product.class);
     }
 
     private static List<Order> fetchOrders() throws IOException {
-        List<Order> orders = parser.readJson("orders.json", Order.class);
-        return orders;
+        return parser.readJson("orders.json", Order.class);
     }
 
     private static List<User> fetchUsers() throws IOException {
-        List<User> users = parser.readJson("users.json", User.class);
-        return users;
+        return parser.readJson("users.json", User.class);
     }
 }
