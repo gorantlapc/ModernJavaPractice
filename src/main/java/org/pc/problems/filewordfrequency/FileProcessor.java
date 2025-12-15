@@ -21,15 +21,24 @@ public class FileProcessor implements Runnable {
 
     @Override
     public void run() {
-        try (InputStream resource = getClass().getClassLoader().getResourceAsStream(fileName)) {
-            assert resource != null;
+        try (InputStream resource = getClass().getClassLoader().getResourceAsStream(fileName);) {
+            if (resource == null) {
+                throw new RuntimeException("File not found: " + fileName);
+            }
             BufferedReader reader = new BufferedReader(new InputStreamReader(resource));
-            StringBuilder content = new StringBuilder(reader.readLine());
-            String line;
+            String line = "";
+            line = reader.readLine();
+            if (line == null || line.isEmpty()) {
+                throw new RuntimeException("File is empty: " + fileName);
+            }
+            StringBuilder content = new StringBuilder();
             while ((line = reader.readLine()) != null) {
                 content.append(line);
             }
-            listOfProducts = Arrays.stream(content.toString().split(",")).map(String::trim).toList();
+            listOfProducts = Arrays.stream(content.toString().split(","))
+                    .map(String::trim)
+                    .filter(s -> !s.isEmpty())
+                    .toList();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
